@@ -136,7 +136,7 @@ func testChannel(channel *model.Channel, testModel string) (err error, openAIErr
 	milliseconds := tok.Sub(tik).Milliseconds()
 	consumedTime := float64(milliseconds) / 1000.0
 	other := service.GenerateTextOtherInfo(c, meta, modelRatio, 1, completionRatio, modelPrice)
-	model.RecordConsumeLog(c, 1, channel.Id, usage.PromptTokens, usage.CompletionTokens, testModel, "模型测试", quota, "模型测试", 0, quota, int(consumedTime), false, other)
+	model.RecordConsumeLog(c, 1, channel.Id, usage.PromptTokens, usage.CompletionTokens, testModel, "Model Testing", quota, "Model Testing", 0, quota, int(consumedTime), false, other)
 	common.SysLog(fmt.Sprintf("testing channel #%d, response: \n%s", channel.Id, string(respBody)))
 	return nil, nil
 }
@@ -211,7 +211,7 @@ func testAllChannels(notify bool) error {
 	testAllChannelsLock.Lock()
 	if testAllChannelsRunning {
 		testAllChannelsLock.Unlock()
-		return errors.New("测试已在运行中")
+		return errors.New("Test already running")
 	}
 	testAllChannelsRunning = true
 	testAllChannelsLock.Unlock()
@@ -241,7 +241,7 @@ func testAllChannels(notify bool) error {
 			}
 
 			if milliseconds > disableThreshold {
-				err = errors.New(fmt.Sprintf("响应时间 %.2fs 超过阈值 %.2fs", float64(milliseconds)/1000.0, float64(disableThreshold)/1000.0))
+				err = errors.New(fmt.Sprintf("Response time %.2fs exceeds threshold %.2fs", float64(milliseconds)/1000.0, float64(disableThreshold)/1000.0))
 				shouldBanChannel = true
 			}
 
@@ -262,7 +262,7 @@ func testAllChannels(notify bool) error {
 		testAllChannelsRunning = false
 		testAllChannelsLock.Unlock()
 		if notify {
-			err := common.SendEmail("通道测试完成", common.RootUserEmail, "通道测试完成，如果没有收到禁用通知，说明所有通道都正常")
+			err := common.SendEmail("Channel test completed", common.RootUserEmail, "Channel test completed, if no disabled notification is received, it means all channels are normal")
 			if err != nil {
 				common.SysError(fmt.Sprintf("failed to send email: %s", err.Error()))
 			}
