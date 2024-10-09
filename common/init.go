@@ -17,8 +17,8 @@ var (
 
 func printHelp() {
 	fmt.Println("New API " + Version + " - All in one API service for OpenAI API.")
-	fmt.Println("Copyright (C) 2023 JustSong. All rights reserved.")
-	fmt.Println("GitHub: https://github.com/songquanpeng/one-api")
+	fmt.Println("Copyright (C) 2023 NAI API. All rights reserved.")
+	fmt.Println("Website: https://typegpt.net")
 	fmt.Println("Usage: one-api [--port <port>] [--log-dir <log directory>] [--version] [--help]")
 }
 
@@ -39,7 +39,7 @@ func init() {
 		ss := os.Getenv("SESSION_SECRET")
 		if ss == "random_string" {
 			log.Println("WARNING: SESSION_SECRET is set to the default value 'random_string', please change it to a random string.")
-			log.Println("警告：SESSION_SECRET被设置为默认值'random_string'，请修改为随机字符串。")
+			log.Println("Warning: SESSION_SECRET is set to the default value 'random_string', please change it to a random string.")
 			log.Fatal("Please set SESSION_SECRET to a random string.")
 		} else {
 			SessionSecret = ss
