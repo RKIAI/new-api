@@ -5,8 +5,8 @@ import (
 )
 
 var UserUsableGroups = map[string]string{
-	"default": "默认分组",
-	"vip":     "vip分组",
+	"default": "Default Group",
+	"vip":     "Vip Group",
 }
 
 func UserUsableGroups2JSONString() string {
