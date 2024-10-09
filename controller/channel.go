@@ -85,7 +85,7 @@ func FetchUpstreamModels(c *gin.Context) {
 	if channel.Type != common.ChannelTypeOpenAI {
 		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": "仅支持 OpenAI 类型渠道",
+			"message": "Only OpenAI type channels are supported",
 		})
 		return
 	}
@@ -108,7 +108,7 @@ func FetchUpstreamModels(c *gin.Context) {
 	if !result.Success {
 		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": "上游返回错误",
+			"message": "Upstream returned an error",
 		})
 	}
 
@@ -202,7 +202,7 @@ func AddChannel(c *gin.Context) {
 		if channel.Other == "" {
 			c.JSON(http.StatusOK, gin.H{
 				"success": false,
-				"message": "部署地区不能为空",
+				"message": "The deployment region cannot be empty",
 			})
 			return
 		} else {
@@ -212,7 +212,7 @@ func AddChannel(c *gin.Context) {
 				if regionMap["default"] == nil {
 					c.JSON(http.StatusOK, gin.H{
 						"success": false,
-						"message": "部署地区必须包含default字段",
+						"message": "The deployment region must contain the default field",
 					})
 					return
 				}
@@ -289,7 +289,7 @@ func DeleteChannelBatch(c *gin.Context) {
 	if err != nil || len(channelBatch.Ids) == 0 {
 		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": "参数错误",
+			"message": "Parameter error",
 		})
 		return
 	}
@@ -323,7 +323,7 @@ func UpdateChannel(c *gin.Context) {
 		if channel.Other == "" {
 			c.JSON(http.StatusOK, gin.H{
 				"success": false,
-				"message": "部署地区不能为空",
+				"message": "The deployment region cannot be empty",
 			})
 			return
 		} else {
@@ -333,7 +333,7 @@ func UpdateChannel(c *gin.Context) {
 				if regionMap["default"] == nil {
 					c.JSON(http.StatusOK, gin.H{
 						"success": false,
-						"message": "部署地区必须包含default字段",
+						"message": "The deployment region must contain the default field",
 					})
 					return
 				}
